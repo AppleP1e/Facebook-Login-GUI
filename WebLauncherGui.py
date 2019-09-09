@@ -1,7 +1,6 @@
 #Imports all the stuff you need
 from tkinter import *
 import tkinter.messagebox as Tkm
-import time
 from selenium import webdriver 
 
 
@@ -9,7 +8,7 @@ from selenium import webdriver
 #Creates the window, sets parameters
 root = Tk()
 root.title("WebAppLauncher")
-root.geometry("200x250+120+150") 
+root.geometry("200x150+120+150") 
 
 
 
@@ -17,7 +16,7 @@ root.geometry("200x250+120+150")
 def DestroyAll():
     if Tkm.askokcancel("Quit", "Do you really want to quit?"):
         sys.exit() 
-
+        driver.quit()
 #Facebook Login process
 def LoginToFB():
     
@@ -55,7 +54,7 @@ def LoginToFB():
     CloseButton.pack(side = BOTTOM)
     
     mainloop()
-#def LoginToAtlas():
+    # Login to Atlas mail
 def LoginToAtlas():
     
     #Creates a new window 
@@ -109,5 +108,16 @@ CloseButton = Button(root, text = "Close", command = DestroyAll)
 CloseButton.pack(side = BOTTOM)
 
 mainloop()
+
+# A work of Vladimír Blažek for "Introduction to Python" course held at PřF UK and led by RNDr. Jiří Makovička, CSc.
+# A free program distributed under MIT license. Aviliable on GitHub/AppleP1e
+
+# A list of sources I used to write the code:
+# * https://naucse.python.cz/
+# *https://www.geeksforgeeks.org/ 
+# *https://www.python.org/
+# *https://www.seleniumhq.org/selenium-ide/
+
+# This program is using Selenium module and geckodriver by Mozilla. 
 
 
