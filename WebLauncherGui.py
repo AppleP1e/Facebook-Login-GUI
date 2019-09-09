@@ -25,6 +25,8 @@ def LoginToFB():
     LogPage.title("Facebook Login")
     LogPage.geometry("300x140+50+50")
 
+    #global E_mail
+
     E_mail = Label(LogPage, text = "E-mail")
     E_mail.pack()
     EmailEntry = Entry(LogPage, textvariable = StringVar)
@@ -39,9 +41,22 @@ def LoginToFB():
     def PassInfo():
         global driver
         driver =  webdriver.Firefox() #This calls the backend GeckoDriver, included in this folder.
-        driver.get('https://www.facebook.com/')
-       
+        driver.get('https://www.facebook.com/login/device-based/regular/login/')
+        
+        E_mail_value = EmailEntry.get() 
+        Password_value = Password_Entry.get() #That way we get values entered into entries as strings and we can manipulate with them that way. Yay!
 
+        emailElem = driver.find_element_by_id("email") 
+        emailElem.send_keys(E_mail_value) #This finds element of email field and then it takes our new strings and passes them on.
+
+        Password_value = driver.find_element_by_id("pass")
+        Password_value = driver.send_keys(Password_value) #Same thing as above, only with password. 
+
+        clicker = driver.find_element_by_id("loginbutton")
+        clicker.click() #After passing all the information above, the code locates the login button and finally clicks on it. 
+
+#I used this page for helping me with this code: https://www.quora.com/Does-Facebook-provide-any-API-to-log-in-to-an-account-with-Python
+#And this page: https://www.geeksforgeeks.org/facebook-login-using-python/
     def DestroyWin():
         
         LogPage.destroy()
